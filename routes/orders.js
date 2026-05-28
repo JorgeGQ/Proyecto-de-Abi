@@ -64,17 +64,38 @@ router.get('/summary', verifyAdmin, async (req, res) => {
 // POST /api/orders - Create new order (public)
 router.post('/', async (req, res) => {
   try {
-    const { customerName, items, deliveryPoint, note } = req.body;
-    if (!customerName || !items || items.length === 0) {
-      return res.status(400).json({ error: 'Nombre y productos son requeridos' });
+    const { customerName, customerPhone, items, deliveryPoint, note } = req.body;
+    if (!customerName || !customerPhone || !items || items.length === 0) {
+      return res.status(400).json({ error: 'Nombre, teléfono y productos son requeridos' });
+    }
+
+    // Calculate total price securely on the server using database product prices
+    const { Product } = require('../database/models');
+    let totalPrice = 0;
+    const itemsWithUpdatedPrices = [];
+
+    for (const item of items) {
+      const product = await Product.findByPk(item.productId);
+      if (product) {
+        const itemPrice = Number(product.price);
+        totalPrice += itemPrice * Number(item.quantity);
+        itemsWithUpdatedPrices.push({
+          productId: product.id,
+          productName: product.name,
+          quantity: Number(item.quantity),
+          price: itemPrice,
+        });
+      }
     }
 
     const order = await Order.create({
       customerName,
-      items,
+      customerPhone,
+      items: itemsWithUpdatedPrices,
       deliveryPoint,
       note,
       status: 'pending',
+      price: totalPrice,
       orderedAt: new Date(),
     });
 
@@ -92,7 +113,10 @@ router.patch('/:id/confirm', verifyAdmin, async (req, res) => {
     if (!order) return res.status(404).json({ error: 'Pedido no encontrado' });
 
     order.status = 'confirmed';
-    order.price = price;
+    // If a manual price override is sent in the body, use it. Otherwise, keep the pre-calculated price.
+    if (price !== undefined && price !== null) {
+      order.price = parseFloat(price);
+    }
     order.confirmedAt = new Date();
     await order.save();
 

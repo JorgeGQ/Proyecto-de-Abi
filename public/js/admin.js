@@ -215,6 +215,11 @@ function renderOrders(container, orders, type) {
 
     // Meta rows
     let metaHtml = '';
+    if (order.customerPhone) {
+      const rawPhone = order.customerPhone.replace(/\D/g, '');
+      const waNumber = rawPhone.length === 10 ? `52${rawPhone}` : rawPhone;
+      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; color:var(--pink-light)">call</span></span><span class="order-meta-label">Contacto:</span><span class="order-meta-value"><a href="tel:${order.customerPhone}" style="color:var(--pink-light); text-decoration:underline; font-weight:700; margin-right:12px">${order.customerPhone}</a><a href="https://wa.me/${waNumber}" target="_blank" style="display:inline-flex; align-items:center; gap:3px; color:#52c97c; font-weight:700; text-decoration:none; font-size:0.8rem"><span class="material-icons-outlined" style="font-size:0.95rem; vertical-align:middle">chat</span> WhatsApp</a></span></div>`;
+    }
     if (order.deliveryPoint) {
       metaHtml += `<div class="order-meta-row"><span class="order-meta-icon"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; color:var(--pink-light)">place</span></span><span class="order-meta-label">Entrega:</span><span class="order-meta-value">${order.deliveryPoint}</span></div>`;
     }
@@ -228,7 +233,7 @@ function renderOrders(container, orders, type) {
       metaHtml += `<div class="order-meta-row"><span class="order-meta-icon"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; color:var(--pink-light)">inventory_2</span></span><span class="order-meta-label">Entregado:</span><span class="order-meta-value">${formatDate(order.deliveredAt)}</span></div>`;
     }
 
-    // Price banner (only when confirmed/delivered)
+    // Price banner (only when confirmed/delivered or calculated in pending)
     const priceBanner = order.price != null ? `
       <div class="order-price-banner">
         <span class="order-price-label"><span class="material-icons-outlined" style="font-size:1.1rem; vertical-align:middle; margin-right:4px; color:var(--pink-light)">payments</span>Total a pagar</span>
@@ -240,13 +245,7 @@ function renderOrders(container, orders, type) {
     if (type === 'pending') {
       actionsHtml = `
         <div class="order-card-actions">
-          <div class="confirm-form">
-            <div class="confirm-price-wrap">
-              <span class="confirm-price-prefix">$</span>
-              <input type="number" placeholder="Precio del pedido" min="0" step="0.5" id="price-input-${order.id}" aria-label="Precio a cobrar" />
-            </div>
-            <button class="btn-confirm" onclick="confirmOrder(${order.id})">Confirmar</button>
-          </div>
+          <button class="btn-confirm-direct" onclick="confirmOrder(${order.id})"><span class="material-icons-outlined" style="font-size:1.1rem; vertical-align:middle; margin-right:4px">check_circle</span>Confirmar pedido</button>
           <button class="btn-delete" onclick="deleteOrder(${order.id})"><span class="material-icons-outlined" style="font-size:0.95rem; vertical-align:middle; margin-right:2px">delete</span>Eliminar pedido</button>
         </div>`;
     } else if (type === 'confirmed') {
@@ -287,25 +286,15 @@ function renderOrders(container, orders, type) {
 
 // ---- Confirm order ----
 async function confirmOrder(orderId) {
-  const priceInput = document.getElementById(`price-input-${orderId}`);
-  const price = parseFloat(priceInput.value);
-  if (isNaN(price) || price < 0) {
-    priceInput.style.borderColor = '#e05252';
-    priceInput.focus();
-    return;
-  }
-  priceInput.style.borderColor = '';
-
   try {
     const res = await apiFetch(`/api/orders/${orderId}/confirm`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ price }),
     });
     if (res.ok) {
       showToast('Pedido confirmado');
       loadPendingOrders();
       loadConfirmedOrders();
+      loadBadges();
     } else {
       showToast('Error al confirmar pedido', 'error');
     }

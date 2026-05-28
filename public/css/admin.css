@@ -438,22 +438,26 @@ body.admin-body {
 
 .confirm-form input[type="number"]:focus { border-color: var(--pink); }
 
-.btn-confirm {
+.btn-confirm-direct {
   background: linear-gradient(135deg, #52c97c, #27ae60);
   color: var(--white);
-  padding: 13px 20px;
+  padding: 14px 18px;
   border-radius: var(--radius-md);
-  font-weight: 800;
-  font-size: 0.9rem;
-  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 0.92rem;
   transition: var(--transition);
-  box-shadow: 0 4px 16px rgba(40,167,69,0.3);
-  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(40,167,69,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
-.btn-confirm:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(40,167,69,0.42);
+.btn-confirm-direct:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(40,167,69,0.4);
 }
 
 .btn-deliver {
@@ -1000,15 +1004,8 @@ body.admin-body {
     font-size: 1.1rem;
   }
 
-  /* Confirm actions stacking for very narrow screens */
+  /* Header stacking for very narrow screens */
   @media (max-width: 380px) {
-    .confirm-form {
-      flex-direction: column;
-      gap: 8px;
-    }
-    .btn-confirm {
-      width: 100%;
-    }
     .order-header {
       flex-direction: column;
       align-items: flex-start;

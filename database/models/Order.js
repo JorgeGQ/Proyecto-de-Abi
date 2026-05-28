@@ -6,6 +6,10 @@ const Order = sequelize.define('Order', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  customerPhone: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   items: {
     // Stored as JSON string: [{productId, productName, quantity}]
     type: DataTypes.TEXT,

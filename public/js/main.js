@@ -141,6 +141,7 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const customerName = document.getElementById('customerName').value.trim();
+  const customerPhone = document.getElementById('customerPhone').value.trim();
   const deliveryPoint = document.getElementById('deliveryPoint').value.trim();
   const note = document.getElementById('note').value.trim();
 
@@ -165,6 +166,14 @@ form.addEventListener('submit', async (e) => {
   if (!customerName) {
     nameInput.classList.add('error');
     nameInput.focus();
+    valid = false;
+  }
+
+  const phoneInput = document.getElementById('customerPhone');
+  phoneInput.classList.remove('error');
+  if (!customerPhone) {
+    phoneInput.classList.add('error');
+    if (valid) phoneInput.focus();
     valid = false;
   }
 
@@ -203,7 +212,7 @@ form.addEventListener('submit', async (e) => {
     const res = await fetch('/api/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ customerName, items, deliveryPoint, note }),
+      body: JSON.stringify({ customerName, customerPhone, items, deliveryPoint, note }),
     });
 
     const data = await res.json();
