@@ -134,6 +134,19 @@ async function apiFetch(url, options = {}) {
     showLogin();
     throw new Error('Sesión expirada');
   }
+  if (!res.ok) {
+    let errorText = `Error del servidor (${res.status})`;
+    try {
+      const data = await res.json();
+      if (data && data.error) errorText = data.error;
+    } catch (e) {
+      try {
+        const text = await res.text();
+        if (text && text.length < 200) errorText = text;
+      } catch (e2) {}
+    }
+    throw new Error(errorText);
+  }
   return res;
 }
 
@@ -408,7 +421,23 @@ async function loadProducts() {
   list.innerHTML = '<div class="spinner"></div>';
   try {
     const res = await fetch('/api/products');
+    if (!res.ok) {
+      let errorText = `Error del servidor (${res.status})`;
+      try {
+        const errorData = await res.json();
+        if (errorData && errorData.error) errorText = errorData.error;
+      } catch (e) {
+        try {
+          const text = await res.text();
+          if (text && text.length < 200) errorText = text;
+        } catch (e2) {}
+      }
+      throw new Error(errorText);
+    }
     const products = await res.json();
+    if (products && products.error) {
+      throw new Error(products.error);
+    }
 
     if (!products.length) {
       list.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><span class="material-icons-outlined" style="font-size:3.5rem; color:rgba(255,240,234,0.25)">restaurant_menu</span></div><p>No hay postres todavía. ¡Agrega uno!</p></div>';

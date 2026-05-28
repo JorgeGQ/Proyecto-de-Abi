@@ -16,11 +16,55 @@ let selectedItems = {}; // { productId: quantity }
 async function loadProducts() {
   try {
     const res = await fetch('/api/products');
+    if (!res.ok) {
+      let errorText = `Código de error: ${res.status}`;
+      try {
+        const errorData = await res.json();
+        if (errorData && errorData.error) {
+          errorText = errorData.error;
+        }
+      } catch (e) {
+        try {
+          const text = await res.text();
+          if (text && text.length < 200) errorText = text;
+        } catch (e2) {}
+      }
+      throw new Error(errorText);
+    }
     products = await res.json();
+    if (products && products.error) {
+      throw new Error(products.error);
+    }
     renderProducts();
     renderItemsSelector();
   } catch (err) {
     console.error('Error cargando productos:', err);
+    
+    // Clear skeletons and show a clear, stylized error message to the user
+    const grid = document.getElementById('productos-grid');
+    if (grid) {
+      grid.innerHTML = `
+        <div class="error-container" style="color:var(--pink-dark); text-align:center; grid-column:1/-1; padding:40px 20px; background:rgba(255,240,234,0.5); border-radius:16px; border:1px dashed var(--pink-light); margin: 20px 0;">
+          <span class="material-icons-outlined" style="font-size:3rem; margin-bottom:12px; color:var(--pink-light)">error_outline</span>
+          <h3 style="font-family:'Pangolin', sans-serif; font-size:1.4rem; margin:0 0 8px 0; color:var(--pink-dark)">No se pudieron cargar los postres</h3>
+          <p style="color:var(--gray-text); font-size:0.95rem; margin:0 0 16px 0; max-width:500px; margin-left:auto; margin-right:auto; word-break:break-word;">
+            ${err.message || 'Error de conexión con el servidor. Por favor, verifica tu conexión a internet o los logs de Render.'}
+          </p>
+          <button onclick="loadProducts()" class="btn-hero" style="padding:10px 20px; font-size:0.9rem; margin:0 auto; display:inline-flex; align-items:center; border-radius:30px; cursor:pointer; background:var(--pink-dark); color:white; border:none; box-shadow:0 4px 10px rgba(220,120,110,0.25);">
+            <span class="material-icons-outlined" style="font-size:1.1rem; margin-right:6px">refresh</span> Reintentar
+          </button>
+        </div>
+      `;
+    }
+    
+    const container = document.getElementById('items-selector');
+    if (container) {
+      container.innerHTML = `
+        <div style="color:var(--pink-dark); padding:12px; background:rgba(255,240,234,0.3); border-radius:8px; font-size:0.9rem;">
+          Error al cargar postres en el formulario: ${err.message || 'Error de conexión'}.
+        </div>
+      `;
+    }
   }
 }
 
