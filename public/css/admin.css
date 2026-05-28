@@ -72,6 +72,7 @@ body.admin-body {
 .login-card .form-group input:focus {
   border-color: var(--pink);
   background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 16px rgba(201,123,132,0.3);
 }
 
 .login-error {
@@ -237,8 +238,10 @@ body.admin-body {
 }
 
 .order-card:hover {
-  border-color: rgba(201,123,132,0.3);
+  border-color: rgba(201,123,132,0.35);
   background: rgba(255,255,255,0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 /* Color accent stripe on left */
@@ -606,7 +609,11 @@ body.admin-body {
   transition: var(--transition);
 }
 
-.product-admin-card:hover { border-color: rgba(201,123,132,0.3); }
+.product-admin-card:hover {
+  border-color: rgba(201,123,132,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
 
 .product-admin-card-top {
   display: flex;
