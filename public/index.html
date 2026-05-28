@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Postres Abi – Endulzando tu vida 🍰</title>
+  <meta name="description" content="Postres artesanales hechos con amor en Xicotepec de Juárez. Brownies, galletas red velvet, pay de queso y más. ¡Haz tu pedido hoy!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oi&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/landing.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="/images/logo.jpeg" alt="Postres Abi Logo" class="nav-logo-img" />
+      <span class="nav-brand">Postres Abi</span>
+    </div>
+    <div class="nav-links">
+      <a href="#productos" id="nav-productos">Postres</a>
+      <a href="#pedido" id="nav-pedido" class="btn-nav-order">Pedir ahora ✨</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg-blur"></div>
+    <div class="hero-content">
+      <div class="hero-logo-wrap">
+        <img src="/images/logo.jpeg" alt="Postres Abi" class="hero-logo" />
+        <div class="hero-logo-glow"></div>
+      </div>
+      <h1 class="hero-title">Postres Abi</h1>
+      <p class="hero-subtitle">Endulzando tu vida ✨</p>
+      <p class="hero-tagline">Postres artesanales hechos con mucho amor<br/>en Xicotepec de Juárez</p>
+      <div class="hero-badges">
+        <span class="badge">🍫 Brownies</span>
+        <span class="badge">🍪 Red Velvet</span>
+        <span class="badge">🥧 Pay de Queso</span>
+        <span class="badge">🎂 Pasteles</span>
+      </div>
+      <a href="#pedido" class="btn-hero" id="btn-hero-order">Hacer mi pedido 💌</a>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FFF0EA"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="section productos" id="productos">
+    <div class="section-header">
+      <span class="section-tag">Nuestros postres</span>
+      <h2 class="section-title">Lo que más amamos 🧁</h2>
+      <p class="section-desc">Todo hecho con amor y los mejores ingredientes. Pedidos con 1 día de anticipación.</p>
+    </div>
+    <div class="productos-grid" id="productos-grid">
+      <!-- Products loaded by JS -->
+      <div class="product-skeleton"></div>
+      <div class="product-skeleton"></div>
+      <div class="product-skeleton"></div>
+      <div class="product-skeleton"></div>
+    </div>
+  </section>
+
+  <!-- POLITICA -->
+  <section class="section politica">
+    <div class="politica-card">
+      <div class="politica-icon">📋</div>
+      <h3>Información de pedidos</h3>
+      <ul class="politica-list">
+        <li>✅ Todos los pedidos se realizan con <strong>1 día de anticipación</strong></li>
+        <li>🛵 También tenemos <strong>servicio a domicilio</strong> ¡sin costo extra!</li>
+        <li>📩 Confirmaremos tu pedido por mensaje</li>
+        <li>❤️ Hecho con amor en Xicotepec de Juárez</li>
+      </ul>
+      <a href="https://www.instagram.com/endulzandotuvida" target="_blank" class="btn-instagram" id="btn-instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        @endulzandotuvida
+      </a>
+    </div>
+  </section>
+
+  <!-- PEDIDO FORM -->
+  <section class="section pedido" id="pedido">
+    <div class="section-header">
+      <span class="section-tag">Haz tu pedido</span>
+      <h2 class="section-title">¿Qué se te antoja? 💕</h2>
+      <p class="section-desc">Llena el formulario y Abi te confirmará tu pedido pronto.</p>
+    </div>
+
+    <form class="pedido-form" id="pedido-form" novalidate>
+      <div class="form-group">
+        <label for="customerName">¿Cómo te llamas? *</label>
+        <input type="text" id="customerName" name="customerName" placeholder="Tu nombre completo" required maxlength="100" />
+      </div>
+
+      <div class="form-group">
+        <label>¿Qué postres quieres? * <span class="label-hint">(puedes elegir varios)</span></label>
+        <div class="items-selector" id="items-selector">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="deliveryPoint">Punto de entrega *</label>
+        <input type="text" id="deliveryPoint" name="deliveryPoint" placeholder="Ej: Colonia Centro, calle Juárez 23 / Paso en la plaza" required maxlength="200" />
+      </div>
+
+      <div class="form-group">
+        <label for="note">Notas o comentarios <span class="label-hint">(opcional)</span></label>
+        <textarea id="note" name="note" rows="3" placeholder="Sabores especiales, decoración, alergias, hora de entrega preferida..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btn-submit-order">
+        <span class="btn-submit-text">Enviar pedido 💌</span>
+        <span class="btn-submit-loading" style="display:none">Enviando...</span>
+      </button>
+    </form>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="success-modal" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card">
+        <div class="modal-icon">🎉</div>
+        <h3 id="modal-title">¡Pedido recibido!</h3>
+        <p>Tu pedido fue enviado con éxito. Abi te contactará pronto para confirmarlo. 💕</p>
+        <button class="btn-modal-close" id="btn-modal-close">¡Listo!</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img src="/images/logo.jpeg" alt="Postres Abi" class="footer-logo" />
+    <p class="footer-name">Postres Abi</p>
+    <p class="footer-slogan">Endulzando tu vida ✨</p>
+    <a href="https://www.instagram.com/endulzandotuvida" target="_blank" class="footer-ig" id="footer-instagram">
+      @endulzandotuvida
+    </a>
+    <p class="footer-location">📍 Xicotepec de Juárez</p>
+    <p class="footer-copy">© 2025 Postres Abi · Hecho con ❤️</p>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

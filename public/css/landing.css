@@ -1,0 +1,531 @@
+/* ============================================================
+   POSTRES ABI — Landing Page Styles
+   ============================================================ */
+
+/* ---- HERO ---- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  background: linear-gradient(160deg, #E8A5AE 0%, #C97B84 35%, #A3525B 70%, #3D1A12 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 80px;
+  overflow: hidden;
+}
+
+.hero-bg-blur {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,240,234,0.15);
+  border-radius: 50%;
+  top: -60px;
+  right: -80px;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-logo-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.hero-logo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid rgba(255,255,255,0.5);
+  box-shadow: 0 12px 40px rgba(61,26,18,0.35);
+  animation: floatLogo 4s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.hero-logo-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  animation: glowPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+
+.hero-title {
+  font-family: 'Oi', serif;
+  font-size: 3.2rem;
+  color: var(--white);
+  text-shadow: 0 4px 20px rgba(61,26,18,0.3);
+  line-height: 1;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.hero-tagline {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+.badge {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn-hero {
+  display: inline-block;
+  background: var(--white);
+  color: var(--pink-dark);
+  padding: 16px 36px;
+  border-radius: var(--radius-full);
+  font-family: 'Oi', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  box-shadow: 0 8px 28px rgba(61,26,18,0.25);
+  transition: var(--transition);
+  margin-top: 8px;
+}
+
+.btn-hero:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 36px rgba(61,26,18,0.35);
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.hero-wave svg {
+  width: 100%;
+  display: block;
+}
+
+/* ---- PRODUCTS SECTION ---- */
+.productos {
+  background: var(--cream);
+  padding-top: 48px;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Skeleton loaders */
+.product-skeleton {
+  background: linear-gradient(90deg, var(--cream-dark) 25%, #f9e8e2 50%, var(--cream-dark) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+  height: 220px;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* Product card */
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.product-card.unavailable {
+  opacity: 0.6;
+}
+
+.product-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 12px;
+}
+
+.product-name {
+  font-family: 'Oi', serif;
+  font-size: 1rem;
+  color: var(--brown);
+  margin-bottom: 4px;
+}
+
+.product-desc {
+  font-size: 0.78rem;
+  color: var(--gray-text);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-price {
+  font-weight: 800;
+  color: var(--pink-dark);
+  font-size: 1rem;
+}
+
+.product-unavailable-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(61,26,18,0.75);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* ---- POLITICA ---- */
+.politica {
+  background: var(--cream);
+  padding: 20px 20px 60px;
+}
+
+.politica-card {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: 36px 24px;
+  color: var(--white);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.politica-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.politica-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+  font-family: 'Oi', serif;
+}
+
+.politica-list {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.politica-list li {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.92);
+}
+
+.politica-list strong {
+  color: var(--white);
+}
+
+.btn-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.5);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.btn-instagram:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-2px);
+}
+
+/* ---- ORDER FORM (PEDIDO) ---- */
+.pedido {
+  background: var(--gray-light);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  max-width: 100%;
+  padding: 60px 20px;
+}
+
+.pedido .section-header {
+  max-width: 480px;
+  margin: 0 auto 36px;
+}
+
+.pedido-form {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px 22px;
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- ITEMS SELECTOR ---- */
+.items-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  border: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.item-row.selected {
+  border-color: var(--pink);
+  background: rgba(201,123,132,0.08);
+}
+
+.item-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition);
+  background: var(--white);
+}
+
+.item-check.checked {
+  background: var(--pink);
+}
+
+.item-check.checked::after {
+  content: '✓';
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.item-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--brown);
+}
+
+.item-price {
+  font-size: 0.82rem;
+  color: var(--pink-dark);
+  font-weight: 600;
+}
+
+.item-qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: var(--white);
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  line-height: 1;
+}
+
+.qty-btn:hover { background: var(--pink-dark); }
+.qty-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.qty-val {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--brown);
+  min-width: 20px;
+  text-align: center;
+}
+
+.items-error {
+  color: #e05252;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: 6px;
+  display: none;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN FOR LANDING PAGE
+   ============================================================ */
+
+/* --- Screen size under 360px (very small phones) --- */
+@media (max-width: 359px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
+  .product-img {
+    height: 180px;
+  }
+  .item-row {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+  .qty-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Screen size 768px and up (tablets & desktops) --- */
+@media (min-width: 768px) {
+  /* Hero section adjustments */
+  .hero {
+    padding: 120px 48px 100px;
+  }
+  .hero-logo {
+    width: 170px;
+    height: 170px;
+    border-width: 6px;
+  }
+  .hero-title {
+    font-size: 4.8rem;
+  }
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+  .hero-tagline {
+    font-size: 1.15rem;
+    max-width: 500px;
+  }
+  .hero-badges {
+    gap: 12px;
+    margin: 8px 0;
+  }
+  .badge {
+    font-size: 0.92rem;
+    padding: 8px 20px;
+  }
+  .btn-hero {
+    padding: 18px 44px;
+    font-size: 1.15rem;
+  }
+
+  /* Products grid */
+  .productos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 24px;
+  }
+  .product-img {
+    height: 180px;
+  }
+  .product-info {
+    padding: 16px;
+  }
+  .product-name {
+    font-size: 1.1rem;
+  }
+  .product-desc {
+    font-size: 0.84rem;
+    margin-bottom: 12px;
+  }
+
+  /* Policy Card */
+  .politica-card {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 48px 36px;
+  }
+  .politica-list {
+    max-width: 420px;
+    margin: 0 auto 24px;
+  }
+
+  /* Order Form */
+  .pedido-form {
+    padding: 36px 32px;
+  }
+}
