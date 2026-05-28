@@ -29,7 +29,7 @@ function renderProducts() {
   grid.innerHTML = '';
 
   if (!products.length) {
-    grid.innerHTML = '<p style="color:var(--gray-text);text-align:center;grid-column:1/-1;padding:20px">Pronto habrá postres disponibles 💕</p>';
+    grid.innerHTML = '<p style="color:var(--gray-text);text-align:center;grid-column:1/-1;padding:20px">Pronto habrá postres disponibles</p>';
     return;
   }
 

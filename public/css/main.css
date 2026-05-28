@@ -38,7 +38,7 @@ html {
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: var(--cream);
   color: var(--brown);
   min-height: 100vh;
@@ -47,13 +47,24 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Oi', serif;
-  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ---- MATERIAL ICONS GLOBAL ---- */
+.material-icons-outlined {
+  font-size: 1.25rem;
+  vertical-align: middle;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ---- NAVBAR ---- */
 .navbar {
@@ -90,9 +101,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .nav-brand {
-  font-family: 'Oi', serif;
-  font-size: 1.1rem;
+  font-weight: 800;
+  font-size: 1.25rem;
   color: var(--brown);
+  letter-spacing: -0.02em;
 }
 
 .nav-links {
@@ -222,13 +234,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ---- BUTTONS ---- */
 .btn-submit {
   width: 100%;
-  padding: 18px;
+  padding: 16px;
   background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
   color: var(--white);
   border-radius: var(--radius-full);
-  font-family: 'Oi', serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
   box-shadow: 0 8px 24px rgba(201,123,132,0.45);
   transition: var(--transition);
   margin-top: 8px;
@@ -326,7 +338,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .footer-name {
-  font-family: 'Oi', serif;
+  font-weight: 800;
   font-size: 1.4rem;
   color: var(--cream);
   margin-bottom: 4px;

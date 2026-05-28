@@ -192,9 +192,10 @@ async function loadDeliveredOrders() {
 // ---- Render orders ----
 function renderOrders(container, orders, type) {
   if (!orders.length) {
+    const iconName = type === 'pending' ? 'schedule' : type === 'confirmed' ? 'check_circle' : 'inventory_2';
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state-icon">${type === 'pending' ? '🎉' : type === 'confirmed' ? '📋' : '✨'}</div>
+        <div class="empty-state-icon"><span class="material-icons-outlined" style="font-size:3.5rem; color:rgba(255,240,234,0.25)">${iconName}</span></div>
         <p>${type === 'pending' ? 'No hay pedidos pendientes por ahora' : type === 'confirmed' ? 'No hay pedidos confirmados' : 'Aún no hay pedidos entregados'}</p>
       </div>`;
     return;
@@ -215,22 +216,22 @@ function renderOrders(container, orders, type) {
     // Meta rows
     let metaHtml = '';
     if (order.deliveryPoint) {
-      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon">📍</span><span class="order-meta-label">Entrega:</span><span class="order-meta-value">${order.deliveryPoint}</span></div>`;
+      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; color:var(--pink-light)">place</span></span><span class="order-meta-label">Entrega:</span><span class="order-meta-value">${order.deliveryPoint}</span></div>`;
     }
     if (order.note) {
-      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon">📝</span><span class="order-meta-label">Nota:</span><span class="order-meta-value">${order.note}</span></div>`;
+      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; color:var(--pink-light)">description</span></span><span class="order-meta-label">Nota:</span><span class="order-meta-value">${order.note}</span></div>`;
     }
     if (order.confirmedAt) {
-      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon">✅</span><span class="order-meta-label">Confirmado:</span><span class="order-meta-value">${formatDate(order.confirmedAt)}</span></div>`;
+      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; color:var(--pink-light)">check_circle</span></span><span class="order-meta-label">Confirmado:</span><span class="order-meta-value">${formatDate(order.confirmedAt)}</span></div>`;
     }
     if (order.deliveredAt) {
-      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon">📦</span><span class="order-meta-label">Entregado:</span><span class="order-meta-value">${formatDate(order.deliveredAt)}</span></div>`;
+      metaHtml += `<div class="order-meta-row"><span class="order-meta-icon"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; color:var(--pink-light)">inventory_2</span></span><span class="order-meta-label">Entregado:</span><span class="order-meta-value">${formatDate(order.deliveredAt)}</span></div>`;
     }
 
     // Price banner (only when confirmed/delivered)
     const priceBanner = order.price != null ? `
       <div class="order-price-banner">
-        <span class="order-price-label">💰 Total a pagar</span>
+        <span class="order-price-label"><span class="material-icons-outlined" style="font-size:1.1rem; vertical-align:middle; margin-right:4px; color:var(--pink-light)">payments</span>Total a pagar</span>
         <span class="order-price-amount">$${Number(order.price).toFixed(0)}</span>
       </div>` : '';
 
@@ -244,14 +245,14 @@ function renderOrders(container, orders, type) {
               <span class="confirm-price-prefix">$</span>
               <input type="number" placeholder="Precio del pedido" min="0" step="0.5" id="price-input-${order.id}" aria-label="Precio a cobrar" />
             </div>
-            <button class="btn-confirm" onclick="confirmOrder(${order.id})">✅ Confirmar</button>
+            <button class="btn-confirm" onclick="confirmOrder(${order.id})">Confirmar</button>
           </div>
-          <button class="btn-delete" onclick="deleteOrder(${order.id})">🗑️ Eliminar pedido</button>
+          <button class="btn-delete" onclick="deleteOrder(${order.id})"><span class="material-icons-outlined" style="font-size:0.95rem; vertical-align:middle; margin-right:2px">delete</span>Eliminar pedido</button>
         </div>`;
     } else if (type === 'confirmed') {
       actionsHtml = `
         <div class="order-card-actions">
-          <button class="btn-deliver" onclick="deliverOrder(${order.id})">📦 Marcar como entregado</button>
+          <button class="btn-deliver" onclick="deliverOrder(${order.id})">Marcar como entregado</button>
         </div>`;
     }
 
@@ -263,7 +264,7 @@ function renderOrders(container, orders, type) {
         <div class="order-header">
           <div>
             <div class="order-customer">${order.customerName}</div>
-            <div class="order-datetime">📅 ${formatDate(order.orderedAt)}</div>
+            <div class="order-datetime"><span class="material-icons-outlined" style="font-size:0.95rem; vertical-align:middle; margin-right:2px; color:rgba(255,240,234,0.4)">calendar_today</span> ${formatDate(order.orderedAt)}</div>
           </div>
           <span class="order-status ${statusClass}">${statusLabel}</span>
         </div>
@@ -302,7 +303,7 @@ async function confirmOrder(orderId) {
       body: JSON.stringify({ price }),
     });
     if (res.ok) {
-      showToast('✅ Pedido confirmado');
+      showToast('Pedido confirmado');
       loadPendingOrders();
       loadConfirmedOrders();
     } else {
@@ -318,7 +319,7 @@ async function deliverOrder(orderId) {
   try {
     const res = await apiFetch(`/api/orders/${orderId}/deliver`, { method: 'PATCH' });
     if (res.ok) {
-      showToast('📦 Pedido marcado como entregado');
+      showToast('Pedido marcado como entregado');
       loadConfirmedOrders();
       loadDeliveredOrders();
       loadBadges();
@@ -336,7 +337,7 @@ async function deleteOrder(orderId) {
   try {
     const res = await apiFetch(`/api/orders/${orderId}`, { method: 'DELETE' });
     if (res.ok) {
-      showToast('🗑️ Pedido eliminado');
+      showToast('Pedido eliminado');
       loadPendingOrders();
     } else {
       showToast('Error al eliminar', 'error');
@@ -373,7 +374,7 @@ async function loadSummary(date) {
     if (!Object.keys(data.summary).length) {
       summaryContent.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state-icon">🍰</div>
+          <div class="empty-state-icon"><span class="material-icons-outlined" style="font-size:3.5rem; color:rgba(255,240,234,0.25)">restaurant_menu</span></div>
           <p>No hay pedidos pendientes${dateParam ? ' para esta fecha' : ''}</p>
         </div>`;
       return;
@@ -393,13 +394,13 @@ async function loadSummary(date) {
     summaryContent.innerHTML = `
       <div class="summary-card">
         <div class="summary-card-header">
-          <h4>📅 ${dateLabel}</h4>
+          <h4><span class="material-icons-outlined" style="font-size:1.15rem; vertical-align:middle; margin-right:6px; color:var(--pink-light)">calendar_today</span>${dateLabel}</h4>
         </div>
         <div class="summary-items-list">
           ${itemsHtml}
         </div>
       </div>
-      <div class="summary-total-pill">📋 Total de pedidos: <strong>${data.total}</strong></div>
+      <div class="summary-total-pill"><span class="material-icons-outlined" style="font-size:1.05rem; vertical-align:middle; margin-right:6px; color:var(--pink-light)">assignment</span>Total de pedidos: <strong style="margin-left:4px">${data.total}</strong></div>
     `;
   } catch (err) {
     summaryContent.innerHTML = `<p style="color:#ff8080;text-align:center">${err.message}</p>`;
@@ -421,7 +422,7 @@ async function loadProducts() {
     const products = await res.json();
 
     if (!products.length) {
-      list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🍰</div><p>No hay postres todavía. ¡Agrega uno!</p></div>';
+      list.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><span class="material-icons-outlined" style="font-size:3.5rem; color:rgba(255,240,234,0.25)">restaurant_menu</span></div><p>No hay postres todavía. ¡Agrega uno!</p></div>';
       return;
     }
 
@@ -440,7 +441,7 @@ async function loadProducts() {
           <span class="product-admin-avail ${p.available ? 'avail-yes' : 'avail-no'}">${p.available ? 'Disponible' : 'No disponible'}</span>
         </div>
         <div class="product-admin-actions">
-          <button class="btn-edit-product" onclick="openEditProduct(${p.id}, '${escStr(p.name)}', '${escStr(p.description || '')}', ${p.price}, ${p.available}, '${p.imageUrl || ''}')">✏️ Editar</button>
+          <button class="btn-edit-product" onclick="openEditProduct(${p.id}, '${escStr(p.name)}', '${escStr(p.description || '')}', ${p.price}, ${p.available}, '${p.imageUrl || ''}')"><span class="material-icons-outlined" style="font-size:0.95rem; vertical-align:middle; margin-right:4px">edit</span>Editar</button>
         </div>
       `;
       list.appendChild(card);
@@ -473,10 +474,10 @@ function openEditProduct(id, name, desc, price, available, imageUrl) {
   const deleteBtn = document.getElementById('btn-delete-product');
 
   if (id) {
-    modalTitle.textContent = '✏️ Editar postre';
+    modalTitle.textContent = 'Editar postre';
     deleteBtn.style.display = 'block';
   } else {
-    modalTitle.textContent = '➕ Nuevo postre';
+    modalTitle.textContent = 'Nuevo postre';
     deleteBtn.style.display = 'none';
   }
 
@@ -543,7 +544,7 @@ document.getElementById('edit-product-form').addEventListener('submit', async (e
     }
 
     if (res.ok) {
-      showToast(productId ? '✅ Postre actualizado' : '✅ Postre creado');
+      showToast(productId ? 'Postre actualizado' : 'Postre creado');
       document.getElementById('edit-product-modal').style.display = 'none';
       loadProducts();
     } else {
@@ -568,7 +569,7 @@ document.getElementById('btn-delete-product').addEventListener('click', async ()
   try {
     const res = await apiFetch(`/api/products/${productId}`, { method: 'DELETE' });
     if (res.ok) {
-      showToast('🗑️ Postre eliminado');
+      showToast('Postre eliminado');
       document.getElementById('edit-product-modal').style.display = 'none';
       loadProducts();
     } else {

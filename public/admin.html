@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Panel Abi – Postres Abi 👑</title>
+  <title>Panel Abi – Postres Abi</title>
   <meta name="robots" content="noindex,nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oi&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/admin.css" />
 </head>
@@ -16,7 +17,7 @@
   <!-- LOGIN SCREEN -->
   <div class="login-screen" id="login-screen">
     <img src="/images/logo.jpeg" alt="Postres Abi" class="login-logo" />
-    <h1 class="login-title">Hola Abi 👑</h1>
+    <h1 class="login-title">Hola Abi</h1>
     <p class="login-subtitle">Panel exclusivo de administración</p>
     <div class="login-card">
       <form id="login-form" novalidate>
@@ -25,10 +26,10 @@
           <input type="password" id="admin-password" placeholder="Ingresa tu contraseña" autocomplete="current-password" />
         </div>
         <button type="submit" class="btn-submit" id="btn-login">
-          <span class="btn-submit-text">Entrar ✨</span>
+          <span class="btn-submit-text">Entrar</span>
           <span class="btn-submit-loading" style="display:none">Verificando...</span>
         </button>
-        <p class="login-error" id="login-error">Contraseña incorrecta 😕</p>
+        <p class="login-error" id="login-error">Contraseña incorrecta. Por favor intenta de nuevo.</p>
       </form>
     </div>
   </div>
@@ -40,7 +41,7 @@
     <header class="admin-header">
       <div class="admin-header-left">
         <img src="/images/logo.jpeg" alt="Logo" class="admin-logo" />
-        <span class="admin-title">Panel de Abi 👑</span>
+        <span class="admin-title">Panel de Abi</span>
       </div>
       <button class="btn-logout" id="btn-logout">Salir</button>
     </header>
@@ -48,25 +49,25 @@
     <!-- Tabs -->
     <nav class="admin-tabs" role="tablist">
       <button class="admin-tab active" role="tab" aria-selected="true" data-tab="pendientes" id="tab-pendientes">
-        <span class="tab-icon">⏳</span>
+        <span class="tab-icon"><span class="material-icons-outlined">schedule</span></span>
         <span class="tab-label">Pendientes</span>
         <span class="tab-badge" id="badge-pendientes">0</span>
       </button>
       <button class="admin-tab" role="tab" aria-selected="false" data-tab="recuento" id="tab-recuento">
-        <span class="tab-icon">📊</span>
+        <span class="tab-icon"><span class="material-icons-outlined">analytics</span></span>
         <span class="tab-label">Recuento</span>
       </button>
       <button class="admin-tab" role="tab" aria-selected="false" data-tab="confirmados" id="tab-confirmados">
-        <span class="tab-icon">✅</span>
+        <span class="tab-icon"><span class="material-icons-outlined">check_circle</span></span>
         <span class="tab-label">Confirmados</span>
         <span class="tab-badge" id="badge-confirmados">0</span>
       </button>
       <button class="admin-tab" role="tab" aria-selected="false" data-tab="entregados" id="tab-entregados">
-        <span class="tab-icon">📦</span>
+        <span class="tab-icon"><span class="material-icons-outlined">inventory_2</span></span>
         <span class="tab-label">Entregados</span>
       </button>
       <button class="admin-tab" role="tab" aria-selected="false" data-tab="productos" id="tab-productos">
-        <span class="tab-icon">🍰</span>
+        <span class="tab-icon"><span class="material-icons-outlined">restaurant_menu</span></span>
         <span class="tab-label">Postres</span>
       </button>
     </nav>
@@ -76,7 +77,7 @@
 
       <!-- PENDIENTES -->
       <section class="admin-panel active" id="panel-pendientes" role="tabpanel">
-        <h2 class="admin-section-title">Pedidos pendientes ⏳</h2>
+        <h2 class="admin-section-title">Pedidos pendientes</h2>
         <p class="admin-section-subtitle">Confirma cada pedido y asigna el precio antes de prepararlo.</p>
         <div class="orders-list" id="list-pendientes">
           <div class="spinner"></div>
@@ -85,7 +86,7 @@
 
       <!-- RECUENTO -->
       <section class="admin-panel" id="panel-recuento" role="tabpanel">
-        <h2 class="admin-section-title">Recuento a preparar 📊</h2>
+        <h2 class="admin-section-title">Recuento a preparar</h2>
         <p class="admin-section-subtitle">Cuánto de cada postre necesitas preparar hoy.</p>
         <div class="summary-date-filter">
           <input type="date" id="summary-date" />
@@ -98,7 +99,7 @@
 
       <!-- CONFIRMADOS -->
       <section class="admin-panel" id="panel-confirmados" role="tabpanel">
-        <h2 class="admin-section-title">Pedidos confirmados ✅</h2>
+        <h2 class="admin-section-title">Pedidos confirmados</h2>
         <p class="admin-section-subtitle">Listos para preparar y entregar.</p>
         <div class="orders-list" id="list-confirmados">
           <div class="spinner"></div>
@@ -107,7 +108,7 @@
 
       <!-- ENTREGADOS -->
       <section class="admin-panel" id="panel-entregados" role="tabpanel">
-        <h2 class="admin-section-title">Pedidos entregados 📦</h2>
+        <h2 class="admin-section-title">Pedidos entregados</h2>
         <p class="admin-section-subtitle">Historial de pedidos completados.</p>
         <div class="orders-list" id="list-entregados">
           <div class="spinner"></div>
@@ -116,12 +117,12 @@
 
       <!-- PRODUCTOS -->
       <section class="admin-panel" id="panel-productos" role="tabpanel">
-        <h2 class="admin-section-title">Mis postres 🍰</h2>
+        <h2 class="admin-section-title">Mis postres</h2>
         <p class="admin-section-subtitle">Edita precio, descripción y disponibilidad de cada postre.</p>
         <div class="products-admin-list" id="products-admin-list">
           <div class="spinner"></div>
         </div>
-        <button class="btn-add-product" id="btn-add-product">＋ Agregar nuevo postre</button>
+        <button class="btn-add-product" id="btn-add-product"><span class="material-icons-outlined" style="vertical-align:middle; font-size:1.15rem; margin-right:4px">add</span> Agregar nuevo postre</button>
       </section>
 
     </main>
@@ -153,7 +154,7 @@
           <div class="form-group">
             <label for="edit-product-available">¿Disponible?</label>
             <select id="edit-product-available">
-              <option value="true">Sí, disponible ✅</option>
+              <option value="true">Sí, disponible</option>
               <option value="false">No disponible por ahora</option>
             </select>
           </div>
@@ -163,10 +164,10 @@
             <img id="edit-product-img-preview" class="img-preview" style="display:none" alt="Vista previa" />
           </div>
           <button type="submit" class="btn-submit" id="btn-save-product">
-            <span class="btn-submit-text">Guardar cambios ✅</span>
+            <span class="btn-submit-text">Guardar cambios</span>
             <span class="btn-submit-loading" style="display:none">Guardando...</span>
           </button>
-          <button type="button" class="btn-delete" id="btn-delete-product" style="display:none">🗑️ Eliminar postre</button>
+          <button type="button" class="btn-delete" id="btn-delete-product" style="display:none"><span class="material-icons-outlined" style="vertical-align:middle; font-size:1.1rem; margin-right:4px">delete</span> Eliminar postre</button>
         </form>
       </div>
     </div>

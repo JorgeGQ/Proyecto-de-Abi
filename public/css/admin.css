@@ -32,11 +32,12 @@ body.admin-body {
 }
 
 .login-title {
-  font-family: 'Oi', serif;
-  font-size: 2rem;
+  font-weight: 800;
+  font-size: 2.2rem;
   color: var(--cream);
   text-align: center;
   margin-bottom: 6px;
+  letter-spacing: -0.02em;
 }
 
 .login-subtitle {
@@ -123,9 +124,10 @@ body.admin-body {
 }
 
 .admin-title {
-  font-family: 'Oi', serif;
-  font-size: 1.1rem;
+  font-weight: 800;
+  font-size: 1.2rem;
   color: var(--cream);
+  letter-spacing: -0.02em;
 }
 
 .btn-logout {
@@ -207,10 +209,11 @@ body.admin-body {
    SECTION TITLE
    ================================================================ */
 .admin-section-title {
-  font-family: 'Oi', serif;
-  font-size: 1.45rem;
+  font-weight: 800;
+  font-size: 1.6rem;
   color: var(--cream);
   margin-bottom: 8px;
+  letter-spacing: -0.01em;
 }
 
 .admin-section-subtitle {
@@ -264,8 +267,8 @@ body.admin-body {
 }
 
 .order-customer {
-  font-family: 'Oi', serif;
-  font-size: 1.15rem;
+  font-weight: 800;
+  font-size: 1.25rem;
   color: var(--cream);
   line-height: 1.2;
 }
@@ -381,8 +384,8 @@ body.admin-body {
 }
 
 .order-price-amount {
-  font-family: 'Oi', serif;
-  font-size: 1.3rem;
+  font-weight: 800;
+  font-size: 1.4rem;
   color: var(--pink-light);
 }
 
@@ -539,8 +542,8 @@ body.admin-body {
 }
 
 .summary-card h4 {
-  font-family: 'Oi', serif;
-  font-size: 1.05rem;
+  font-weight: 800;
+  font-size: 1.1rem;
   color: var(--pink-light);
 }
 
@@ -559,8 +562,9 @@ body.admin-body {
 .summary-item:last-child { border-bottom: none; }
 
 .summary-product-name {
+  font-family: 'Pangolin', cursive;
+  font-size: 1.2rem;
   font-weight: 700;
-  font-size: 0.95rem;
   color: var(--cream);
 }
 
@@ -634,10 +638,11 @@ body.admin-body {
 .product-admin-info { flex: 1; min-width: 0; }
 
 .product-admin-name {
-  font-family: 'Oi', serif;
-  font-size: 1.05rem;
+  font-family: 'Pangolin', cursive;
+  font-size: 1.35rem;
+  font-weight: 700;
   color: var(--cream);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .product-admin-price {
@@ -758,7 +763,7 @@ body.admin-body {
 }
 
 .sheet-title {
-  font-family: 'Oi', serif;
+  font-weight: 800;
   font-size: 1.2rem;
   color: var(--cream);
 }
