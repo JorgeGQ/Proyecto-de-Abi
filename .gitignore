@@ -1,3 +1,16 @@
 node_modules/
 database/*.db
 .env
+.antigravitycli/
+
+# Uploaded product images (keep default assets)
+public/images/product-*
+
+# OS temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+npm-debug.log*
